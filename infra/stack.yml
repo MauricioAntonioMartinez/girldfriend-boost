@@ -1,0 +1,73 @@
+AWSTemplateFormatVersion: '2010-09-09'
+
+Transform: AWS::Serverless-2016-10-31
+
+Description: An AWS Serverless Specification template describing populate every month of the transactions.
+
+Parameters:
+  ConfSecretName:
+    Description: Name of the secret manager
+    Type: String
+    Default: TINDER_CONF
+
+  InitialApiKeyTinder:
+    Description: Initial x-auth-token from tinder seed.
+    Type: String
+    NoEcho: true
+
+
+  InitialRefreshToken:
+    Description: Initial refresh token from facebook.
+    Type: String
+    NoEcho: true
+
+
+  FacebookEmail:
+    Description: Your email to authenticate via facebook.
+    Type: String
+    NoEcho: true
+
+  FacebookPassword:
+    Description: Your password to authenticate via facebook.
+    Type: String
+    NoEcho: true
+
+
+Resources:
+  SeedTransactions:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: tinder-like
+      Handler: dist/main.handler
+      Runtime: nodejs14.x
+      InlineCode: 'module.exports = () => {}'
+      Description: ''
+      MemorySize: 260
+      Timeout: 30
+      Environment:
+        Variables:
+          TinderSecretName: !Ref ConfSecretName
+          EMAIL: !Ref FacebookEmail
+          PASSWORD: !Ref FacebookPassword
+      Policies:
+        - CloudWatchPutMetricPolicy: {}
+        - AWSSecretsManagerGetSecretValuePolicy:
+            SecretArn: !Ref TinderEnv
+      Events:
+        Schedule1:
+          Type: Schedule
+          Properties:
+            Schedule: rate(12 hours)
+      Tracing: Active
+
+  TinderEnv:
+    Type: 'AWS::SecretsManager::Secret'
+    Properties:
+      Name: !Ref ConfSecretName
+      Description: Configuration of the api and auth of tinder.
+      SecretString: !Sub |
+        {
+        "apiToken": "${InitialApiKeyTinder}",
+        "refreshToken": "${InitialRefreshToken}"
+        }
+

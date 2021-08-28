@@ -1,0 +1,22 @@
+{
+  "name": "girlfriend-boost",
+  "version": "1.0.0",
+  "description": "Boost your changes of getting a girldfriend",
+  "main": "index.js",
+  "author": "Mauricio Martinez <MauricioAntonioMartinez@outlook.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "tsnd --respawn ./src/development",
+    "build":"tsc"
+  },
+  "dependencies": {
+    "aws-sdk": "^2.978.0",
+    "axios": "^0.21.1",
+    "puppeteer": "^10.2.0"
+  },
+  "devDependencies": {
+    "dotenv": "^10.0.0",
+    "ts-node-dev": "^1.1.8",
+    "typescript": "^4.4.2"
+  }
+}
