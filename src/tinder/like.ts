@@ -16,7 +16,7 @@ export const like = async(girlId:string,token:string):Promise<boolean> =>{
 
         return true
     } catch (error :any) {
-        console.log(`Response: ${error.response.data}`);
+        console.log(`Response: ${JSON.stringify(error.response)}`);
         return false;
     }
 }
