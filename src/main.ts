@@ -6,7 +6,10 @@ import { Girl } from "./types/tinder";
 
 
 exports.handler = async ()=>{
-    let config = await getConfiguration("LAMBDA_CONF");
+    const secretName = process.env.TinderSecretName;
+    if(!secretName) throw new Error("TInder secret name should be set.");
+
+    let config = await getConfiguration(secretName);
 
     let girls = await getGirls(config.apiToken);
     let shouldContinue = true;
@@ -21,8 +24,8 @@ exports.handler = async ()=>{
                 facebookPassword:process.env.PASSWORD!
             });
             girls = await getGirls(config.apiToken);
-            if (!girls) throw new Error("Unable to authenticate in any way");
-            await setConfiguration("LAMBDA_CONF",config);
+            if (!girls) throw new Error("Unable to authenticate on any way");
+            await setConfiguration(secretName,config);
         }  
      }
     
@@ -34,8 +37,7 @@ exports.handler = async ()=>{
         if(!girls) break;
     }
 
-    console.log(`Ending processing, successfully processed %${processedGirls}`);
-
+    console.log(`Ending processing girls(likes), liked %${processedGirls}`);
 }    
 
 
