@@ -41,6 +41,12 @@ async function generateAccessToken({ email, password }:GenerateAccessTokenParams
     ]);
 
 
+    
+    if(process.env.PROD){
+      await page.waitForSelector('button[name="submit[Continue]"]');
+      await page.click('button[name="submit[Continue]"]')
+    }
+    
     const data = await page.evaluate(() => document.querySelector('*')!.outerHTML);
 
     console.log(data);
