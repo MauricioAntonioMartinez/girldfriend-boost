@@ -7,14 +7,14 @@
   "license": "MIT",
   "scripts": {
     "start": "tsnd --respawn ./src/development",
-    "build":"tsc"
+    "build": "tsc"
   },
   "dependencies": {
-    "aws-sdk": "^2.978.0",
     "axios": "^0.21.1",
     "puppeteer": "^10.2.0"
   },
   "devDependencies": {
+    "aws-sdk": "^2.978.0",
     "dotenv": "^10.0.0",
     "ts-node-dev": "^1.1.8",
     "typescript": "^4.4.2"

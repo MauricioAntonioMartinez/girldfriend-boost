@@ -23,7 +23,8 @@ jobs:
 
       - name: npm install and build
         run: | 
-          npm install
+          rm -rf ./src/development.ts
+          npm install --only=prod
           npm run build
 
       - name: zip

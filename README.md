@@ -1,4 +1,4 @@
-![Deploy to Amazon Lambda](https://github.com/MauricioAntonioMartinez/girldfriend-boost/workflows/Deploy%20to%20Amazon%20ECS/badge.svg)
+![Deploy to Amazon Lambda](https://github.com/MauricioAntonioMartinez/girldfriend-boost/workflows/aws/badge.svg)
 
 # Tinder Like - Serverless Automation
 
