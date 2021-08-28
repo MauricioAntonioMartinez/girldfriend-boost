@@ -1,5 +1,5 @@
 
-name: Deploy Tinder lambda
+name: deploy-tinder-function
 on:
   push:
     branches: [master]
@@ -23,7 +23,7 @@ jobs:
 
       - name: npm install and build
         run: | 
-          npm install --only=prod
+          npm install
           npm run build
 
       - name: zip

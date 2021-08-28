@@ -1,3 +1,5 @@
+![Deploy to Amazon Lambda](https://github.com/MauricioAntonioMartinez/girldfriend-boost/workflows/Deploy%20to%20Amazon%20ECS/badge.svg)
+
 # Tinder Like - Serverless Automation
 
 Tired of liking over and over again on tinder, let lambda and event bridge do the work for you.
