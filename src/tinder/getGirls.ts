@@ -10,9 +10,11 @@ export const getGirls = async (token:string):Promise<Girl[] | null> => {
             }
         });
         const girls = data.data.results;
+        if(!girls) 
+            console.log(`No more girls -> ${JSON.stringify(data.data)}`);
         return girls;
     } catch (error:any) {
-        console.log(error.response.data);
+        console.log(`Response: ${error.response}`);
         return null
     }
 }
