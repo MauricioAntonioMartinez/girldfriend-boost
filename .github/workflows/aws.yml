@@ -2,7 +2,7 @@
 name: Deploy Tinder lambda
 on:
   push:
-    branches: [submaster]
+    branches: [master]
 
 jobs:
   deploy-source:
