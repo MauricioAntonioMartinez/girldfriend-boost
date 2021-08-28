@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "axios": "^0.21.1",
-    "puppeteer": "^10.2.0"
+    "puppeteer-core": "^10.2.0"
   },
   "devDependencies": {
     "aws-sdk": "^2.978.0",

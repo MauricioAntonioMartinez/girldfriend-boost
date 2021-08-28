@@ -24,8 +24,8 @@ jobs:
       - name: npm install and build
         run: | 
           rm -rf ./src/development.ts
-          npm install --only=prod
-          npm run build
+          yarn --prod
+          yarn build
 
       - name: zip
         uses: montudor/action-zip@v0.1.0
