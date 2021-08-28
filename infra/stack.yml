@@ -42,13 +42,14 @@ Resources:
       Runtime: nodejs14.x
       InlineCode: 'module.exports = () => {}'
       Description: ''
-      MemorySize: 260
+      MemorySize: 1600
       Timeout: 30
       Environment:
         Variables:
           TinderSecretName: !Ref ConfSecretName
           EMAIL: !Ref FacebookEmail
           PASSWORD: !Ref FacebookPassword
+          PROD: true
       Policies:
         - CloudWatchPutMetricPolicy: {}
         - AWSSecretsManagerGetSecretValuePolicy:
@@ -68,6 +69,8 @@ Resources:
       SecretString: !Sub |
         {
         "apiToken": "${InitialApiKeyTinder}",
-        "refreshToken": "${InitialRefreshToken}"
+        "refreshToken": "${InitialRefreshToken}",
+        "email": "${FacebookEmail}",
+        "password": "${FacebookPassword}"
         }
 
