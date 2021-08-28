@@ -25,7 +25,8 @@ async function generateAccessToken({ email, password }:GenerateAccessTokenParams
     }
 
     const page = await browser.newPage();
-    
+
+
     await page.goto(TINDER_OAUTH_URL);
     
     await page.click(EMAIL_ID);
@@ -38,8 +39,15 @@ async function generateAccessToken({ email, password }:GenerateAccessTokenParams
       page.waitForNavigation(),
       page.click(LOGIN_ID),
     ]);
-    
+
+
+    const data = await page.evaluate(() => document.querySelector('*')!.outerHTML);
+
+    console.log(data);
+
+        
     await page.waitForSelector(CONFIRM_SELECTOR);
+
     
     const [response] = await Promise.all([
       page.waitForResponse(resp => resp.url().endsWith('/dialog/oauth/confirm/')),
