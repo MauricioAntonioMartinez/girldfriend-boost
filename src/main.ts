@@ -7,7 +7,7 @@ import { Girl } from "./types/tinder";
 
 exports.handler = async ()=>{
     const secretName = process.env.TinderSecretName;
-    if(!secretName) throw new Error("TInder secret name should be set.");
+    if(!secretName) throw new Error("Tinder secret name should be set.");
 
     let config = await getConfiguration(secretName);
 
@@ -37,7 +37,7 @@ exports.handler = async ()=>{
         if(!girls) break;
     }
 
-    console.log(`Ending processing girls(likes), liked %${processedGirls}`);
+    console.log(`Ending processing girls(likes), liked ${processedGirls}`);
 }    
 
 

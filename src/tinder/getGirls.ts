@@ -11,8 +11,8 @@ export const getGirls = async (token:string):Promise<Girl[] | null> => {
         });
         const girls = data.data.results;
         return girls;
-    } catch (error) {
-        console.log(error);
+    } catch (error:any) {
+        console.log(error.response.data);
         return null
     }
 }
