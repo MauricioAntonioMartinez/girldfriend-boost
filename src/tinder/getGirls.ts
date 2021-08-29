@@ -10,8 +10,10 @@ export const getGirls = async (token:string):Promise<Girl[] | null> => {
             }
         });
         const girls = data.data.results;
-        if(!girls) 
-            console.log(`No more girls -> ${JSON.stringify(data)}`);
+        if(!girls) {
+            const timeout = data.data.timeout;
+            console.log(`Timed out  ${timeout} ms`);
+        }
         return girls;
     } catch (error:any) {
         console.log(`Response: ${error.response}`);

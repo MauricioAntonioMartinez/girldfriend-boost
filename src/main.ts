@@ -16,13 +16,15 @@ exports.handler = async () => {
     let processedGirls = 0;
  
     if(!girls) {
-        config = await refreshCredentials(config)
-        girls = await getGirls(config.apiToken);
-        if (!girls) {
+        const updatedConfig = await refreshCredentials(config)
+        if(!updatedConfig) {
             // notify me to update the refresh token;
             throw new Error("CW metric sns -> email me error > 0")
-            return;
-        }  
+        }
+        config = updatedConfig;
+        girls = await getGirls(config.apiToken);
+        if (!girls) return;
+    
      }
     
     while (true){
