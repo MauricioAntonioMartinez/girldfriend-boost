@@ -5,7 +5,7 @@ import { like } from "./tinder/like";
 import { Girl } from "./types/tinder";
 
 
-export const handler = async () => {
+exports.handler = async () => {
     const secretName = process.env.TinderSecretName;
     if(!secretName) throw new Error("Tinder secret name should be set.");
     
