@@ -1,5 +1,5 @@
 import refreshCredentials from "./auth/refreshCredentials";
-import { getConfiguration } from "./storage/setKey";
+import { getConfiguration } from "./aws/secrets";
 import { getGirls } from "./tinder/getGirls";
 import { like } from "./tinder/like";
 import { Girl } from "./types/tinder";

@@ -25,6 +25,7 @@ jobs:
         run: | 
           rm -rf ./src/development.ts 
           rm -rf ./src/seed 
+          echo 'declare module "aws-sdk"' > declare.d.ts
           yarn --prod
           yarn build
 
