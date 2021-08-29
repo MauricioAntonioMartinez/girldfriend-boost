@@ -13,9 +13,9 @@ export const getGirls = async (token:string):Promise<Girl[] | null> => {
         const girls = data.data.results;
         if(!girls) {
           const timeout = +data.data.timeout;
-          const res = await updateEventPattern(`rate(${(timeout/100)/60} minutes)`);
+          const res = await updateEventPattern(`rate(${(timeout/1000)/60} minutes)`);
           console.log(`Timed out  ${timeout} ms`);
-          console.log(`Update cron ${res}`);
+          console.log(`Update cron ${JSON.stringify(res)}`);
         }
         return girls;
     } catch (error:any) {

@@ -15,7 +15,7 @@ export const like = async(girlId:string,token:string):Promise<boolean> =>{
             const hours = Math.ceil(Math.abs(rateLimitDate.getTime() - Date.now()) / 36e5);
             console.log(`Rate limited until ${rateLimitDate.toLocaleString()},wait ${hours} hours.`)
             const res = await updateEventPattern(hours > 1 ? `rate(${hours} hours)`: `rate(1 hour)`)
-            console.log(`Update cron rate limited ${res}`)
+            console.log(`Update cron rate limited ${JSON.stringify(res)}`)
             return false
         }
 

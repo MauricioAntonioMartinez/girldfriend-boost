@@ -55,6 +55,11 @@ Resources:
         - CloudWatchPutMetricPolicy: {}
         - AWSSecretsManagerGetSecretValuePolicy:
             SecretArn: !Ref TinderEnv
+        - Statement:
+            - Effect: Allow
+              Action:
+                - events:PutRule
+              Resource: '*'
       Events:
         Schedule1:
           Type: Schedule
