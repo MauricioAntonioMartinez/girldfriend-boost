@@ -1,5 +1,6 @@
-import { generateToken } from "./auth";
+import refreshCredentials from "./auth/refreshCredentials";
 import { getConfiguration } from "./storage/setKey";
+import { getGirls } from "./tinder/getGirls";
 import { Girl } from "./types/tinder";
 
 
@@ -9,37 +10,29 @@ exports.handler = async ()=>{
     
     let config = await getConfiguration(secretName);
  
-    console.log(await generateToken({
-        facebookEmailAddress: process.env.EMAIL!,
-        facebookPassword:process.env.PASSWORD!
-    }))
-    // let girls = await getGirls(config.apiToken);
-    // let shouldContinue = true;
-    // let processedGirls = 0;
+    let girls = await getGirls(config.apiToken);
+    let shouldContinue = true;
+    let processedGirls = 0;
  
-    // if(!girls) {
-    //     config = await refreshCredentials(config)
-    //     girls = await getGirls(config.apiToken);
-    //     if (!girls) {
-    //         config= await generateToken({
-    //             facebookEmailAddress: process.env.EMAIL!,
-    //             facebookPassword:process.env.PASSWORD!
-    //         });
-    //         girls = await getGirls(config.apiToken);
-    //         if (!girls) throw new Error("Unable to authenticate on any way");
-    //         await setConfiguration(secretName,config);
-    //     }  
-    //  }
+    if(!girls) {
+        config = await refreshCredentials(config)
+        girls = await getGirls(config.apiToken);
+        if (!girls) {
+            // notify me to update the refresh token;
+            throw new Error("CW metric sns -> email me error > 0")
+            return;
+        }  
+     }
     
-    // while (true){
-    //     shouldContinue = await likeGirls(girls,config.apiToken);
-    //     if(!shouldContinue) break;
-    //     processedGirls+= girls.length
-    //     girls = await getGirls(config.apiToken);
-    //     if(!girls) break;
-    // }
+    while (true){
+        shouldContinue = await likeGirls(girls,config.apiToken);
+        if(!shouldContinue) break;
+        processedGirls+= girls.length
+        girls = await getGirls(config.apiToken);
+        if(!girls) break;
+    }
 
-    // console.log(`Ending processing girls(likes), liked ${processedGirls}`);
+    console.log(`Ending processing girls(likes), liked ${processedGirls}`);
 }    
 
 

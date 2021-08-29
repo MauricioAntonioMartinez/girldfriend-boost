@@ -23,7 +23,8 @@ jobs:
 
       - name: npm install and build
         run: | 
-          rm -rf ./src/development.ts
+          rm -rf ./src/development.ts 
+          rm -rf ./src/seed 
           yarn --prod
           yarn build
 
@@ -40,6 +41,4 @@ jobs:
           aws_region: ${{ secrets.AWS_REGION }}
           function_name: tinder-like
           zip_file: tinder.zip
-          memory_size: 260
-          Timeout: 30
           runtime: nodejs14.x

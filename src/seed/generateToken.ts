@@ -24,3 +24,4 @@ export default async function generateToken({
     refreshToken: response.data.data.refresh_token,
   };
 }
+
