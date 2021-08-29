@@ -6,7 +6,10 @@ export const updateEventPattern = (pattern:string)=> new Promise((resolve,reject
           Name: process.env.ScheduleName!,
           ScheduleExpression: pattern,
       }, function(err, data) {
-        if (err) return reject(err)
+        if (err) {
+            console.log(err)
+            return reject(err)
+        }
         return resolve(data)           
       });
 })
