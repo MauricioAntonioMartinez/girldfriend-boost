@@ -1,6 +1,7 @@
 import refreshCredentials from "./auth/refreshCredentials";
 import { getConfiguration } from "./storage/setKey";
 import { getGirls } from "./tinder/getGirls";
+import { like } from "./tinder/like";
 import { Girl } from "./types/tinder";
 
 
@@ -40,8 +41,8 @@ exports.handler = async ()=>{
 
 const likeGirls = async (girls:Girl[],token:string)=>{ 
     for(const girl of girls){ 
-        // const ok  = await like(girl.user._id,token); 
-        // if (!ok) return false
+        const ok  = await like(girl.user._id,token); 
+        if (!ok) return false
         console.log(`Liked ${girl.user.name}`);
     }
     return true;
