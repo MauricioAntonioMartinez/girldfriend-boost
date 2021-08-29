@@ -50,6 +50,7 @@ Resources:
           EMAIL: !Ref FacebookEmail
           PASSWORD: !Ref FacebookPassword
           PROD: true
+          ScheduleName: LikeRate
       Policies:
         - CloudWatchPutMetricPolicy: {}
         - AWSSecretsManagerGetSecretValuePolicy:
@@ -58,6 +59,7 @@ Resources:
         Schedule1:
           Type: Schedule
           Properties:
+            Name: LikeRate
             Schedule: rate(1 hour)
 
   TinderEnv:

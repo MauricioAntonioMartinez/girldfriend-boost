@@ -1,1 +1,1 @@
-declare module "aws-sdk"
+// declare module "aws-sdk"
