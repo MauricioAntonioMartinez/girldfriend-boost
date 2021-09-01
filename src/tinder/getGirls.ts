@@ -19,7 +19,7 @@ export const getGirls = async (token:string):Promise<Girl[] | null> => {
         }
         return girls;
     } catch (error:any) {
-        console.log(`Response: ${error.response}`);
+        console.log(error)
         return null
     }
 }
