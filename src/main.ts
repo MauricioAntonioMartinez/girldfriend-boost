@@ -1,4 +1,3 @@
-import refreshCredentials from "./auth/refreshCredentials";
 import { getConfiguration } from "./aws/secrets";
 import { getGirls } from "./tinder/getGirls";
 import { like } from "./tinder/like";
@@ -16,12 +15,12 @@ exports.handler = async () => {
     let processedGirls = 0;
  
     if(!girls) {
-        const updatedConfig = await refreshCredentials(config)
-        if(!updatedConfig) {
-            // notify me to update the refresh token;
-            throw new Error("CW metric sns -> email me error > 0")
-        }
-        config = updatedConfig;
+        // const updatedConfig = await refreshCredentials(config)
+        // if(!updatedConfig) {
+        //     // notify me to update the refresh token;
+        //     throw new Error("CW metric sns -> email me error > 0")
+        // }
+        // config = updatedConfig;
         girls = await getGirls(config.apiToken);
         if (!girls) return;
     
